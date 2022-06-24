@@ -39,15 +39,15 @@ import joblib
 n_causes=50 #number of causes wanted
 
 #importing data
-df_sim = pd.read_csv('dashboard_sim.csv', index_col=0)
+df_sim = pd.read_csv('data/dashboard_sim.csv', index_col=0)
 df_sim.DTOBITO = pd.to_datetime(df_sim.DTOBITO)
 top_causes = df_sim.groupby(by=['CAUSABAS']).agg({'COUNT':'sum'}).sort_values(
     by='COUNT', ascending=False)[:n_causes+1]
 #top_causes = top_causes.drop(top_causes.index[top_causes.index=='ALL'])
 #code_to_name = pd.read_csv('data/icd/code_to_name.csv')
 
-codes = pd.read_csv('codes.csv', header=None)
-categories = pd.read_csv('categories.csv', header=None)
+codes = pd.read_csv('data/codes.csv', header=None)
+categories = pd.read_csv('data/categories.csv', header=None)
 #code to name according to number
 code_to_name = {}
 for code in top_causes.index[:n_causes]:
